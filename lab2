@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Сторінка Студента</title>
+</head>
+<body>
+
+    <h1>Інформація про студента</h1>
+    <h2></h2>
+    <ul>
+        <li><a href="https://genuine-gumption-54f5f9.netlify.app/kantemur.html">Лабораторна робота №1</a>:Перша ознайомча ЛР, "Проєкт з Веб-Розробки".</li>
+        <li><a href="https://drach-ivan-lab2.netlify.app/">Лабораторна робота №2</a>:Друга ЛР вкладання зі списками, "Проєкт з Веб-Розробки".</li>
+    </ul>
+    
+</body>
+</html>
