@@ -15,19 +15,16 @@
     <p>Price: $15</p>
     <!-- below test ------------------ -->
 
-    <ul>
-  <li>First item</li>
-  <li>Second item
-    <ul>
-      <li>Sub-item 1</li>
-      <li>Sub-item 2</li>
-    </ul>
-  </li>
-  <li>Third item</li>
-</ul>
+
+
+<label for="message">Message:</label>
+<textarea id="message"name="message" rows="4" cols="50"></textarea>
+
+
 
 
     <!-- above test ------------------ -->
+    <p></p>
     <img src="https://edube.org/uploads/media/default/0001/04/spathiphyllum-peace-lily.jpg" alt="Peace Lily">
 
     <!-- Zanzibar Gem Section -->
@@ -55,19 +52,23 @@
             <p>
         </blockquote>
     <cite> - теж робить в стилі курсиву - italic style
+      
     <footer> - хуйня, яка робить теж великий абзац для тексту, принцип такий:
         <blockquote>
             <p></p>
             <footer></footer>
         </blockquote>
+
     <br> - саме найкорисне що тут тільик є, для нього не потрібен </dr> , вот приклад:
         <p>This is the first line.
             <br>This is the second line.
             <br>Have a good day</p>
+
     <hr> - робить горизонтальну чорну тонку лінію від лівого кінця до правого, вот приклад:
             <p>This is some text above the line.</p>
             <hr>
             <p>This is some text below the line.</p>
+
     <pre> - размер текста на 9px, уебишний шрифт но для представления кода, вот пример:
         <pre>&lt;body&gt;
     &lt;h1&gt;Hello, World!&lt;/h1&gt;
@@ -111,6 +112,128 @@
   <li>Third item</li>
 </ul>
 
+<table> - именно так должно бить
+  <tr>
+    <td>Row 1, Column 1</td>
+    <td>Row 1, Column 2</td>
+  </tr>
+  <tr>
+    <td>Row 2, Column 1</td>
+    <td>Row 2, Column 2</td>
+  </tr>
+  <tr>
+    <td>Row 3, Column 1</td>
+    <td>Row 3, Column 2</td>
+  </tr>
+</table>
 
-    
+<table> - более лучшая верчися чем више
+  <tr>
+    <th>Service</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>Web design</td>
+    <td>$500</td>
+  </tr>
+  <tr>
+    <td>Graphic design</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Content writing</td>
+    <td>$200</td>
+  </tr>
+  <tr>
+    <td>Social media management</td>
+    <td>$150</td>
+  </tr>
+</table>
+
+<table> - старая цена, новая цена
+  <tr>
+    <th rowspan="2">Product</th>
+    <th colspan="2">Price</th>
+  </tr>
+  <tr>
+    <th>Old</th>
+    <th>New</th>
+  </tr>
+  <tr>
+    <td>Product 1</td>
+    <td>$10.00</td>
+    <td>$12.00</td>
+  </tr>
+  <tr>
+    <td>Product 2</td>
+    <td>$15.00</td>
+    <td>$18.00</td>
+  </tr>
+</table>
+
+# ниже пример Product i Price но красиво оформленно в квадратики
+<table border="1" cellspacing="10" cellpadding="5" width="80%" height="200" align="center" bgcolor="#f2f2f2">
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>Product 1</td>
+    <td>$10.00</td>
+  </tr>
+  <tr>
+    <td>Product 2</td>
+    <td>$15.00</td>
+  </tr>
+</table>
+
+<table> - месяц и сколько заработали, но все надо писать вручную
+  <caption>Monthly Sales</caption>
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td>$10,000</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td>$12,000</td>
+    </tr>
+    <tr>
+      <td>March</td>
+      <td>$15,000</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>$37,000</td>
+    </tr>
+  </tfoot>
+  <summary>This table shows the monthly sales figures for the first quarter of the year.</summary>
+</table>
+
+<img src=sunflowers.jpg" - дозволяє адаптувати зображення під розмір дисплею - ніхуя не працює
+     alt="Sunflowers in the sunset"
+     srcset="sunflowers-small.jpg 480w,
+             sunflowers-medium.jpg 800w,
+             sunflowers-large.jpg 1200w"
+     sizes="(max-width: 480px) 95vw,
+            (max-width: 800px) 45vw,
+            30vw">
+
+  <a href="https://www.example.com" target="_blank">Visit Example Website</a> - відкриє в новій вкладці
+  
+  <a href="mailto:info@example.com">Email Us</a> - пошта, gmail
+
+  <a href="https://www.example.com"> - посилання в зображенні
+    <img src="/uploads/media/default/0001/03/mountain_landscape.jpg" alt="Mountain landscape" width="340" height="250">
+</a>
+
+
 -->
