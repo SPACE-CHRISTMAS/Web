@@ -1,0 +1,146 @@
+/* --- ОСНОВНІ СТИЛІ --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f0f0f0; /* Загальний фон сторінки */
+}
+
+/* --- КОНТЕЙНЕР --- */
+#featured_container {
+    background-color: #e9e9e9; /* Світло-сірий фон, як на фото */
+    padding: 30px 0;
+}
+
+.container {
+    max-width: 1200px; /* Обмежуємо ширину контенту */
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* --- СІТКА 2x2 --- */
+/* Використовуємо Flexbox для створення гнучкої сітки.
+  Це сучасна заміна старим колонкам Bootstrap.
+*/
+.views-view-grid .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Створюємо "gutter" (відстань між колонками) */
+}
+
+/* Кожна друга .row матиме відступ зверху */
+.views-view-grid .row + .row {
+    margin-top: 20px; 
+}
+
+.views-view-grid .col-sm-6 {
+    width: 50%;
+    padding: 10px; /* "gutter" */
+    box-sizing: border-box;
+}
+
+/* --- СТИЛІЗАЦІЯ КАРТКИ НОВИНИ --- */
+
+/* Блок .views-col > div > span - це наш головний контейнер для посилання.
+  Ми робимо його блоковим елементом.
+*/
+.views-col > div > span {
+    display: block;
+    border-radius: 4px;
+    overflow: hidden; /* Обрізаємо все, що виходить за межі (важливо для анімації) */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Посилання (<a>) - це наш "холст", який ми робимо 
+  позиціонованим, щоб розмістити текст поверх нього.
+*/
+.views-col > div > span > a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+
+/* Зображення */
+.views-col .img-responsive {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Плавна анімація при наведенні */
+}
+
+/* Ефект наближення при наведенні */
+.views-col > div > span > a:hover .img-responsive,
+.views-col > div > span > a:focus .img-responsive {
+    transform: scale(1.05);
+}
+
+/* Це тінь-градієнт. Вона лежить між зображенням і текстом,
+  щоб текст завжди було добре видно, навіть на світлих фото.
+*/
+.shadow_featured {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    z-index: 1; /* Шар над зображенням */
+    transition: opacity 0.3s ease;
+}
+
+/* Заголовок H2 */
+.views-col h2 {
+    position: absolute;
+    bottom: 20px; /* Відступ від низу */
+    left: 20px;   /* Відступ зліва */
+    right: 20px;  /* Відступ справа */
+    margin: 0;
+    z-index: 2; /* Шар над тінню .shadow_featured */
+}
+
+/* Сам текст заголовка (span всередині h2)
+  Це і є темна плашка, як на вашому фото.
+*/
+.views-col h2 span {
+    color: #fff;
+    background-color: rgba(0, 35, 80, 0.85); /* Темно-синій, напівпрозорий фон */
+    padding: 8px 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    
+    /* Ці дві властивості потрібні, щоб фон коректно
+      переносився на новий рядок разом з текстом.
+    */
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* --- АДАПТИВНІСТЬ (для мобільних) --- */
+@media (max-width: 767px) {
+    .views-view-grid .col-sm-6 {
+        width: 100%; /* Колонки займають 100% ширини */
+    }
+
+    .views-view-grid .row {
+        margin: 0; /* Скидаємо "gutter" */
+    }
+    
+    .views-view-grid .col-sm-6 {
+         padding: 10px 0; /* Додаємо вертикальний відступ */
+    }
+
+    .views-view-grid .row + .row {
+        margin-top: 0; /* На мобільних вони йдуть один за одним */
+    }
+
+    .views-col h2 {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .views-col h2 span {
+        font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,211 @@
+/* ======================================================================
+   БАЗОВІ СТИЛІ (Mobile First)
+   Для мобільних пристроїв, де все йде в один стовпчик.
+   ====================================================================== */
+
+#navbar .container {
+    position: relative;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navbar {
+    border-bottom: 0px solid #e7e7e7; /* Нижня лінія-розділювач для всієї шапки */
+    margin-bottom: 20px;               /* Відступ знизу від шапки до контенту */
+    position: relative;                /* Встановлює контекст позиціонування для дочірніх елементів (наприклад, для кнопки меню) */
+}
+.navbar.logo {
+    float: left !important;
+    margin: 0px;
+    background: rgb(46, 49, 146);
+}
+.logo {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: normal;
+}
+.navbar-header {
+    text-align: center;
+    padding: 0 !important; /* Цей рядок прибирає всі внутрішні відступи */
+}
+.logo {
+    display: inline-block;             /* Дозволяє елементу мати властивості блоку (наприклад, відступи), але при цьому центруватися як текст */
+}
+.logo h1 span {
+    display: block;                    /* Робить текст блочним, щоб він перенісся на новий рядок під логотипом */
+    font-size: 14px;                   /* Розмір шрифту назви університету */
+    font-weight: 500;                  /* Насиченість (товщина) шрифту */
+    color: #333;                       /* Колір тексту (темно-сірий) */
+}
+.logo svg {
+    height: 70px;                      /* Висота іконки логотипу */
+    fill: #312783;                     /* Колір заливки SVG-іконки (синій) */
+}
+.navbar-toggle {
+    position: absolute;                /* Позиціонування відносно батьківського елемента .navbar */
+    top: 50%;                          /* Зміщує верхню межу кнопки на 50% висоти батька */
+    right: 15px;                       /* Відстань 15px від правого краю */
+    transform: translateY(-50%);       /* Зміщує кнопку вгору на 50% її власної висоти для ідеального центрування по вертикалі */
+    margin-top: 0;                     /* Скидає стандартний верхній відступ */
+}
+
+/* Стилі для блоків всередині розгорнутого мобільного меню */
+#navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    border-top: none;
+    padding-top: 0; /* Цей рядок прибирає відступ */
+    overflow: visible;
+}
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul {
+    text-align: center;                /* Центрує список мов */
+    padding: 10px 0;                   /* Внутрішній відступ зверху та знизу */
+    border-bottom: 1px solid #eee;     /* Нижня лінія-розділювач під блоком мов */
+    list-style: none;                  /* Прибирає стандартні маркери (крапки) списку */
+    margin: 0;                         /* Скидає зовнішні відступи */
+}
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul li {
+    display: inline-block;             /* Розташовує елементи списку (мови) в один рядок */
+}
+#navbar-collapse #block-lpnu-search {
+    padding: 15px;                     /* Внутрішні відступи навколо поля пошуку */
+    border-bottom: 1px solid #eee;     /* Нижня лінія-розділювач під блоком пошуку */
+}
+#navbar-collapse .navbar-nav > li {
+    border-bottom: 1px solid #eee;     /* Нижня лінія-розділювач для кожного пункту меню */
+}
+#navbar-collapse .navbar-nav > li:last-child {
+    border-bottom: none;               /* Прибирає лінію-розділювач в останнього пункту меню */
+}
+
+
+/* ======================================================================
+   АДАПТАЦІЯ ДЛЯ ШИРОКИХ ЕКРАНІВ (Десктоп) - від 992px
+   Ці стилі застосовуються тільки якщо ширина екрана 992 пікселів або більше.
+   ====================================================================== */
+
+/* ======================================================================
+   АДАПТАЦІЯ ДЛЯ ШИРОКИХ ЕКРАНІВ (Десктоп) - від 992px
+   Ці стилі застосовуються тільки якщо ширина екрана 992 пікселів або більше.
+   ====================================================================== */
+
+@media (min-width: 1200px) {
+    /* ВЕРХНІЙ ПОВЕРХ */
+    /* .navbar-header {
+        float: left;
+        text-align: left;
+    } */
+
+    /* ---- ПОЧАТОК ЗМІН ---- */
+
+    /* Робимо контейнер логотипу гнучким для кращого вирівнювання */
+    .navbar-header .logo {
+        display: flex; /* Дозволяє вирівняти іконку і текст в один рядок */
+        align-items: center; /* Центрує іконку і текст по вертикалі */
+        /* text-decoration: none; Прибирає підкреслення, якщо логотип є посиланням */
+    }
+    
+    .logo svg {
+        /* Створюємо синій квадратний фон */
+        background-color: #312783;
+        /* Робимо саму емблему білою */
+        /* fill: white; */
+        /* Задаємо правильний розмір квадрата */
+        height: 150px;
+        width: 150px;
+        /* Додаємо внутрішні відступи, щоб емблема не прилипала до країв */
+        padding: 20px;
+        /* box-sizing: border-box; Включаємо padding в загальну ширину/висоту */
+        /* vertical-align: middle; */
+    }
+
+    .logo h1 span {
+        /* Додаємо синій фон для тексту */
+        background-color: #312783;
+        /* Робимо текст білим */
+        color: white;
+        /* Додаємо внутрішні відступи */
+        /* padding: 8px 15px; */
+        /* Стилізуємо текст як на прикладі */
+        text-transform: uppercase;
+        /* font-weight: bold; */
+        line-height: 1.4; /* Міжрядковий інтервал для тексту */
+        /* display: inline-block; */
+        vertical-align: middle;
+        font-size: 18px; /* Оптимальний розмір шрифту */
+        margin-left: +30px; /* Зменшуємо проміжок між іконкою та текстом */
+        max-width: 360px; /* ВАЖЛИВО: Обмежуємо ширину, щоб текст перенісся */
+    }
+
+    /* ---- КІНЕЦЬ ЗМІН ---- */
+    
+    /* Контейнер для правих елементів та меню */
+    #navbar-collapse {
+        display: block !important;
+        height: auto !important;
+        border-top: none;
+        padding-top: 10px;
+        overflow: visible;
+    }
+    
+    /* Блоки справа */
+    #block-lpnu-peremikachmovi-2 {
+        float: inline-end;
+    }
+    #block-lpnu-peremikachmovi-2 ul {
+        margin: 0 0 5px 0;
+        padding: 0;
+        list-style: none;
+    }
+    #block-lpnu-peremikachmovi-2 ul li {
+        display: inline;
+        padding: 0 4px;
+        font-size: 12px;
+    }
+    #block-lpnu-search {
+        float: right;
+        clear: right;
+        width: 250px;
+    }
+
+    /* НИЖНІЙ ПОВЕРХ (Меню) */
+    #block-lpnu-main-menu {
+        clear: both;
+        border-top: 1px solid #e7e7e7;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+    .navbar-nav {
+        margin: 0;
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav > li {
+        float: left;
+    }
+    .navbar-nav > li > a {
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 10px 15px;
+        color: #333;
+    }
+    
+    /* Випадаючі меню */
+    .navbar-nav > li.dropdown:hover > .dropdown-menu {
+        display: block;
+        column-count: 1; /* Змінено на 2 для кращого вигляду великих меню */
+        max-width: 550px;
+    }
+
+        a.logo:link, a.logo:visited {
+        text-decoration: none;
+        color: #F0F0F0;
+        transition: color 3s;
+        transition: background 3s;
+    }
+}

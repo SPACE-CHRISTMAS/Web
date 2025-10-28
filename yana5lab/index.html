@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Container</title>
+
+    <base href="https://lpnu.ua/">
+
+    <!-- Шрифт, який потрібен для відтворення дизайну -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,regular,italic|Roboto+Condensed:regular,700|Roboto+Slab:600&amp;subset=cyrillic,cyrillic-ext" media="all" />
+    <link rel="stylesheet" href="D:\Web\test5lab\css\style.css">
+    <!-- 
+      Я залишив інші ваші посилання закоментованими, 
+      оскільки CSS нижче відтворює сітку та стилі без них.
+    -->
+    <!-- <link rel="stylesheet" media="all" href="/sites/default/files/css/css_zv5LaRpL7MMKO11ffxh8T6GI4SIQlw-k63nww_XO47g.css" />
+    <link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+    <link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/@unicorn-fail/drupal-bootstrap-styles@0.0.2/dist/3.4.0/8.x-3.x/drupal-bootstrap.min.css" xintegrity="sha512-tGFFYdzcicBwsd5EPO92iUIytu9UkQR3tLMbORL9sfi/WswiHkA1O3ri9yHW+5dXk18Rd+pluMeDBrPKSwNCvw==" crossorigin="anonymous" />
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_qEpjCZmIO5XzZ-QKQcK0klRx1DenFt7hqQ2p-dDtd3k.css" /> -->
+
+    <!-- <style> -->
+        <!-- /* --- ОСНОВНІ СТИЛІ --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f0f0f0; /* Загальний фон сторінки */
+        }
+
+        /* --- КОНТЕЙНЕР --- */
+        #featured_container {
+            background-color: #e9e9e9; /* Світло-сірий фон, як на фото */
+            padding: 30px 0;
+        }
+
+        .container {
+            max-width: 1200px; /* Обмежуємо ширину контенту */
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        /* --- СІТКА 2x2 --- */
+        /* Використовуємо Flexbox для створення гнучкої сітки.
+          Це сучасна заміна старим колонкам Bootstrap.
+        */
+        .views-view-grid .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px; /* Створюємо "gutter" (відстань між колонками) */
+        }
+        
+        /* Кожна друга .row матиме відступ зверху */
+        .views-view-grid .row + .row {
+            margin-top: 20px; 
+        }
+
+        .views-view-grid .col-sm-6 {
+            width: 50%;
+            padding: 10px; /* "gutter" */
+            box-sizing: border-box;
+        }
+
+        /* --- СТИЛІЗАЦІЯ КАРТКИ НОВИНИ --- */
+
+        /* Блок .views-col > div > span - це наш головний контейнер для посилання.
+          Ми робимо його блоковим елементом.
+        */
+        .views-col > div > span {
+            display: block;
+            border-radius: 4px;
+            overflow: hidden; /* Обрізаємо все, що виходить за межі (важливо для анімації) */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Посилання (<a>) - це наш "холст", який ми робимо 
+          позиціонованим, щоб розмістити текст поверх нього.
+        */
+        .views-col > div > span > a {
+            display: block;
+            position: relative;
+            text-decoration: none;
+        }
+
+        /* Зображення */
+        .views-col .img-responsive {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease; /* Плавна анімація при наведенні */
+        }
+
+        /* Ефект наближення при наведенні */
+        .views-col > div > span > a:hover .img-responsive,
+        .views-col > div > span > a:focus .img-responsive {
+            transform: scale(1.05);
+        }
+
+        /* Це тінь-градієнт. Вона лежить між зображенням і текстом,
+          щоб текст завжди було добре видно, навіть на світлих фото.
+        */
+        .shadow_featured {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            z-index: 1; /* Шар над зображенням */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Заголовок H2 */
+        .views-col h2 {
+            position: absolute;
+            bottom: 20px; /* Відступ від низу */
+            left: 20px;   /* Відступ зліва */
+            right: 20px;  /* Відступ справа */
+            margin: 0;
+            z-index: 2; /* Шар над тінню .shadow_featured */
+        }
+
+        /* Сам текст заголовка (span всередині h2)
+          Це і є темна плашка, як на вашому фото.
+        */
+        .views-col h2 span {
+            color: #fff;
+            background-color: rgba(0, 35, 80, 0.85); /* Темно-синій, напівпрозорий фон */
+            padding: 8px 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.4;
+            
+            /* Ці дві властивості потрібні, щоб фон коректно
+              переносився на новий рядок разом з текстом.
+            */
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        /* --- АДАПТИВНІСТЬ (для мобільних) --- */
+        @media (max-width: 767px) {
+            .views-view-grid .col-sm-6 {
+                width: 100%; /* Колонки займають 100% ширини */
+            }
+
+            .views-view-grid .row {
+                margin: 0; /* Скидаємо "gutter" */
+            }
+            
+            .views-view-grid .col-sm-6 {
+                 padding: 10px 0; /* Додаємо вертикальний відступ */
+            }
+
+            .views-view-grid .row + .row {
+                margin-top: 0; /* На мобільних вони йдуть один за одним */
+            }
+
+            .views-col h2 {
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+            }
+
+            .views-col h2 span {
+                font-size: 1.1rem;
+            }
+        } -->
+    <!-- </style> -->
+
+</head>
+<body>
+
+    <header id="featured_container" role="link" aria-label="Featured News and Announcements">
+        <div class=" container ">
+            <div class="region region-featured">
+                <section class="views-element-container block block-views block-views-blockfront-page-news-block-2 clearfix" id="block-views-block-front-page-news-block-2">
+                    <div class="form-group">
+                        <div class="view view-front-page-news view-id-front_page_news view-display-id-block_2 js-view-dom-id-408d6bf6a3fc10275a967cb29d6f3c71c5a10ad9e0999db393172391f1e6b831">
+                            <div class="view-content">
+                                <div class="views-view-grid horizontal cols-2 clearfix">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 views-col col-1">
+                                            <div>
+                                                <span>
+                                                    <a href="/news/instytuty-dosiahnennia-plany-motyvatsiia-tematychnyi-nomer-zhurnalu-lvivska-politekhnika">
+                                                        <img src="/sites/default/files/styles/teaser_720x360/public/2025/7/3/news/32359/zh-inst-tt.jpg?itok=drBw9Xfo" width="720" height="360" alt="Заставка до матеріалу" typeof="Image" class="img-responsive">
+                                                        <div class="shadow_featured"></div>
+                                                        <h2><span>Інститути – досягнення, плани, мотивація: тематичний номер журналу «Львівська політехніка»</span></h2>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 views-col col-2">
+                                            <div>
+                                                <span>
+                                                    <a href="/news/konferentsiia-trudovoho-kolektyvu-natsionalnoho-universytetu-lvivska-politekhnika">
+                                                        <img src="/sites/default/files/styles/teaser_720x360/public/2025/1/30/news/29933/zvit-rektora-2024-tt.jpg?itok=hee8AbOk" width="720" height="360" alt="Заставка до матеріалу" typeof="Image" class="img-responsive">
+                                                        <div class="shadow_featured"></div>
+                                                        <h2><span>Звіт в.о. ректора Львівської політехніки Юрія Бобала на Конференції трудового колективу 30 січня 2025 року</span></h2>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 views-col col-1">
+                                            <div>
+                                                <span>
+                                                    <a href="/news/politekhnika-ekskursiina">
+                                                        <img src="/sites/default/files/styles/teaser_720x360/public/2024/7/15/news/28149/zobrazhennyaviber2024-07-1515-03-24-090.jpg?itok=y1MFM5L_" width="720" height="360" alt="Політехніка екскурсійна" typeof="Image" class="img-responsive">
+                                                        <div class="shadow_featured"></div>
+                                                        <h2><span>Політехніка екскурсійна</span></h2>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 views-col col-2">
+                                            <div>
+                                                <span>
+                                                    <a href="/news/lvivska-politekhnika-u-reitynhakh-zakladiv-vyshchoi-osvity">
+                                                        <img src="/sites/default/files/styles/teaser_720x360/public/2022/3/11/news/18934/lplitart.jpg?itok=a0ZH6yci" width="720" height="360" alt="Фронтон головного корпусу Львівської політехніки" typeof="Image" class="img-responsive">
+                                                        <div class="shadow_featured"></div>
+                                                        <h2><span>Львівська політехніка у рейтингах закладів вищої освіти</span></h2>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>

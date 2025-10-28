@@ -1,0 +1,122 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#featured_container {
+    background-color: #e9e9e9;
+    padding: 30px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+
+.views-view-grid .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+}
+
+.views-view-grid .row + .row {
+    margin-top: 20px; 
+}
+
+.views-view-grid .col-sm-6 {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.views-col > div > span {
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.views-col > div > span > a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+
+.views-col .img-responsive {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.views-col > div > span > a:hover .img-responsive,
+.views-col > div > span > a:focus .img-responsive {
+    transform: scale(1.05);
+}
+
+.shadow_featured {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+.views-col h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    margin: 0;
+    z-index: 2;
+}
+
+.views-col h2 span {
+    color: #fff;
+    background-color: rgba(0, 35, 80, 0.85);
+    padding: 8px 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+@media (max-width: 767px) {
+    .views-view-grid .col-sm-6 {
+        width: 100%;
+    }
+
+    .views-view-grid .row {
+        margin: 0;
+    }
+    
+    .views-view-grid .col-sm-6 {
+         padding: 10px 0;
+    }
+
+    .views-view-grid .row + .row {
+        margin-top: 0;
+    }
+
+    .views-col h2 {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .views-col h2 span {
+        font-size: 1.1rem;
+    }
+}

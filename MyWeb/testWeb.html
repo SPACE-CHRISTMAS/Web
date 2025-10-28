@@ -16,10 +16,8 @@
     <!-- below test ------------------ -->
 
 
-
-<label for="message">Message:</label>
-<textarea id="message"name="message" rows="4" cols="50"></textarea>
-
+    
+<button type="button" onclick="alert('Hello, World!')">Click me!</button>
 
 
 
@@ -51,6 +49,7 @@
         <blockquote>
             <p>
         </blockquote>
+
     <cite> - теж робить в стилі курсиву - italic style
       
     <footer> - хуйня, яка робить теж великий абзац для тексту, принцип такий:
@@ -70,13 +69,13 @@
             <p>This is some text below the line.</p>
 
     <pre> - размер текста на 9px, уебишний шрифт но для представления кода, вот пример:
-        <pre>&lt;body&gt;
-    &lt;h1&gt;Hello, World!&lt;/h1&gt;
-    &lt;p&gt;Welcome to my first HTML page.&lt;/p&gt;
-&lt;/body&gt;</pre>
+            <pre>&lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+        &lt;p&gt;Welcome to my first HTML page.&lt;/p&gt;
+    &lt;/body&gt;</pre>
     
-    <kdb> - воообще хуйня, даже не юзай
-    <samp> - tha same bullshit(хуйня)
+    <kdb> - просто текст показівает воообще хуйня, даже не юзай
+    <samp> - tha same bullshit(хуйня) как <kdb> только текст 5px
 
     <ul> - ставит точку в виде абзаца перед кадим словом, вот пример:
         <ul>
@@ -87,32 +86,32 @@
 
     <ol> - ставит цифри, сама нумерую, отсчет от 1:
         <ol>
-  <li>First item</li>
-  <li>Second item</li>
-  <li>Third item</li>
-</ol>
+          <li>First item</li>
+          <li>Second item</li>
+          <li>Third item</li>
+        </ol>
 
-    <dl> - хуйня , не юзай
-  <dt>Term 1</dt>
-  <dd>Definition 1</dd>
-  <dt>Term 2</dt>
-  <dd>Definition 2</dd>
-  <dt>Term 3</dt>
-  <dd>Definition 3</dd>
-</dl>
+    <dl> - что-то типа лесничной сходки, хуйня не юзай
+      <dt>Term 1</dt>
+      <dd>Definition 1</dd>
+      <dt>Term 2</dt>
+      <dd>Definition 2</dd>
+      <dt>Term 3</dt>
+      <dd>Definition 3</dd>
+    </dl>
 
-    <ul> - может для лабораторних пригодиться
-  <li>First item</li>
-  <li>Second item
-    <ul>
-      <li>Sub-item 1</li>
-      <li>Sub-item 2</li>
+    <ul> - полезная штука для списка если есть подПункти, может для лабораторних пригодиться
+      <li>First item</li>
+      <li>Second item
+        <ul>
+          <li>Sub-item 1</li>
+          <li>Sub-item 2</li>
+        </ul>
+      </li>
+      <li>Third item</li>
     </ul>
-  </li>
-  <li>Third item</li>
-</ul>
 
-<table> - именно так должно бить
+<table> - столбики и родочки, именно так должно бить
   <tr>
     <td>Row 1, Column 1</td>
     <td>Row 1, Column 2</td>
@@ -127,7 +126,7 @@
   </tr>
 </table>
 
-<table> - более лучшая верчися чем више
+<table> - подходит елси нужно 2 столбца, более лучшая верчися чем више
   <tr>
     <th>Service</th>
     <th>Price</th>
@@ -150,7 +149,7 @@
   </tr>
 </table>
 
-<table> - старая цена, новая цена
+<table> - старая цена, новая цена- ну такое себе
   <tr>
     <th rowspan="2">Product</th>
     <th colspan="2">Price</th>
@@ -171,7 +170,7 @@
   </tr>
 </table>
 
-# ниже пример Product i Price но красиво оформленно в квадратики
+# ниже пример Product i Price но красиво оформленно в квадратики - имбовая таблица
 <table border="1" cellspacing="10" cellpadding="5" width="80%" height="200" align="center" bgcolor="#f2f2f2">
   <tr>
     <th>Product</th>
@@ -187,7 +186,7 @@
   </tr>
 </table>
 
-<table> - месяц и сколько заработали, но все надо писать вручную
+<table> - месяц и сколько заработали, но все надо писать вручную, я би уже лучше взял више
   <caption>Monthly Sales</caption>
   <thead>
     <tr>
@@ -235,5 +234,43 @@
     <img src="/uploads/media/default/0001/03/mountain_landscape.jpg" alt="Mountain landscape" width="340" height="250">
 </a>
 
+- робить прямокутник в якому можна писати, щось типу смс
+<label for="message">Message:</label>
+  <textarea id="message"name="message" rows="4" cols="50"></textarea>
 
--->
+- создает кнопку в которой список предложений на вибор- калассно
+<label for="pasta">Pasta:</label>
+<select id="pasta" name="pasta">
+  <option value="spaghetti">Spaghetti</option>
+  <option value="penne">Penne</option>
+  <option value="lasagna">Lasagna</option>
+  <option value="farfalle">Farfalle</option>
+</select>
+
+- нажимаєш на кнопку и вилетает птичка
+<button type="button" onclick="alert('Hello, World!')">Click me!</button>
+
+<fieldset> - рамочка в которой нужно заполнять данние в других мельних рамочках
+  <legend>Shipping Address</legend>
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address">
+  <br>
+  <label for="city">City:</label>
+  <input type="text" id="city" name="city">
+  <br>
+  <label for="zip-code">ZIP Code:</label>
+  <input type="text" id="zip-code" name="zip-code">
+</fieldset>
+
+- рамочка в яку вводиш дані, які саме - працює підказка в рамці яка зникає коли щось написав
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" placeholder="name@example.com">
+
+- autocomplete="off/on"> автозаповнення вимкнути або включити
+<input type="text" name="address" autocomplete="off">
+
+<input type="text" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"> - з тим все зрозуміло
+
+
+
+--с>
