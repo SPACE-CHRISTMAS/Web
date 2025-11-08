@@ -44,7 +44,13 @@ nav ul {
 nav > ul > li {
     display: inline-block;
     margin: 0 15px;
-    position: relative; /* Для позиціонування підменю */
+    position: relative; 
+    /* !!! Додаємо стилі для тексту-не-посилання тут !!! */
+    color: white; /* Робимо текст білим */
+    font-weight: bold; /* Робимо текст жирним */
+    padding: 5px 10px; 
+    border-radius: 5px;
+    cursor: default; /* Щоб показати, що це не клікабельно */
 }
 
 nav a {
