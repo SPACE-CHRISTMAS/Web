@@ -271,6 +271,20 @@
 
 <input type="text" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"> - з тим все зрозуміло
 
+- створює кнопку при на тисканні яку вискакує як повідомлення - чи точно я цього хочу
+<button type="button" onclick="alert('Hello, World!')">Click me!</button>
 
+<form action="/submit" method="POST"> - 2 стрічки , пароль і логін
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <br>
+  
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <br>
+  
+  <input type="submit" value="Login">
+  <input type="reset" value="Reset">
+</form>
 
 --с>
