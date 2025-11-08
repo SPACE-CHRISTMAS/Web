@@ -5,6 +5,13 @@ body {
     padding: 0;
     background-color: #f4f7f9; /* Світло-сірий фон */
     color: #333;
+
+    /* >>> ДОДАЙТЕ ЦІ 3 РЯДКИ <<< */
+    display: flex;
+    flex-direction: column; /* Елементи розташовуються вертикально */
+    min-height: 100vh;      /* Мінімальна висота = висоті вікна */
+
+    align-items: center; /* Центрує main, header і footer */
 }
 
 a {
@@ -25,6 +32,9 @@ header {
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    width: 100%;
+    box-sizing: border-box; /* Важливо, щоб padding не зламав ширину */
 }
 
 header h1 {
@@ -88,11 +98,22 @@ nav ol a:hover {
 
 /* ОСНОВНИЙ КОНТЕНТ */
 main {
-    display: flex; /* Розміщення секцій поруч */
+    display: flex;
     max-width: 1200px;
-    margin: 20px auto;
+    /* >>> ЗМІНІТЬ ЦЕЙ РЯДОК <<< */
+    /* margin: 20px auto; */ /* (Старий код) */
+    margin-top: 20px;      /* (Новий код) */
+    margin-bottom: 20px;   /* (Новий код) */
+    
     padding: 0 20px;
-    gap: 30px; /* Відстань між основними секціями */
+    gap: 30px;
+    
+    flex-grow: 1;
+    align-items: flex-start; /* (Цей рядок з минулого кроку, він правильний) */
+
+    /* >>> ДОДАЙТЕ ЦІ 2 РЯДКИ <<< */
+    width: 100%;
+    box-sizing: border-box; /* Важливо, щоб padding не зламав ширину */
 }
 
 article, aside {
@@ -133,7 +154,9 @@ footer {
     padding: 15px;
     background-color: #333;
     color: white;
-    margin-top: 30px;
+    
+    width: 100%;
+    box-sizing: border-box; /* Важливо, щоб padding не зламав ширину */
 }
 
 footer p {
