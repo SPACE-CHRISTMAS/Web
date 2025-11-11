@@ -1,13 +1,11 @@
-/* --- Загальні стилі --- */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-color: #f0f0f0; /* Світлий фон для контрасту */
+    background-color: #f0f0f0;
 }
 
-/* --- Контейнер розділу (темно-синій фон) --- */
 #events_container {
-    background-color: #002350; /* Темно-синій, як на фото */
+    background-color: #002350;
     padding: 40px 0;
 }
 
@@ -18,7 +16,6 @@ body {
     box-sizing: border-box;
 }
 
-/* --- Заголовок "Незабаром у..." --- */
 .view-header {
     margin-bottom: 30px;
 }
@@ -36,21 +33,19 @@ body {
     text-underline-offset: 6px;
 }
 
-/* --- Сітка подій --- */
 .views-view-grid .row {
     display: flex;
     flex-wrap: wrap;
-    margin: -10px; /* Створюємо відступи (gutter) */
+    margin: -10px;
 }
 
 .views-col {
-    padding: 10px; /* Компенсуємо негативний margin .row */
+    padding: 10px;
     box-sizing: border-box;
-    display: flex; /* Дозволяє картці розтягнутись на всю висоту колонки */
+    display: flex;
     flex-direction: column;
 }
 
-/* --- Стилізація картки події --- */
 .views-field-title .field-content > a {
     display: block;
     background-color: #ffffff;
@@ -58,7 +53,7 @@ body {
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     text-decoration: none;
     overflow: hidden;
-    height: 100%; /* Картка займає всю висоту колонки */
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -69,14 +64,12 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
-/* Зображення в картці */
 .views-col .img-responsive {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* --- Текстовий контент картки --- */
 .event_date {
     color: #555555;
     font-size: 0.9rem;
@@ -84,32 +77,26 @@ body {
 }
 
 .views-col h3 {
-    color: #002350; /* Синій колір для заголовка */
+    color: #002350;
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
     padding: 0 15px 15px 15px;
     margin: 0;
-    /* Це гарантує, що текст займає місце, а h3 росте */
     flex-grow: 1; 
 }
 
 
-/* --- Адаптивна сітка (Mobile-first) --- */
-
-/* 2 колонки на мобільних (до 767px) */
 .col-xs-6 {
     width: 50%;
 }
 
-/* 3 колонки на планшетах (від 768px) */
 @media (min-width: 768px) {
     .col-sm-4 {
         width: 33.333333%;
     }
 }
 
-/* 6 колонок на десктопах (від 1200px) */
 @media (min-width: 1200px) {
     .col-lg-2 {
         width: 16.666667%;
