@@ -40,23 +40,16 @@ a {
     width: 90%;
 }
 
-.hero-news h2 a {
+#hero a:visited {
     color: #fff;
-    font-size: 40px;
-    font-weight: 400;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-decoration: none;
+    transition: color 3s ease-out;
 }
 
-.hero-news h2 a:hover {
-    /* text-decoration: underline; */
-    /* color: #ffcc00; Жовтий акцент при наведенні */
-    color: rgb(46,49,146);
+#hero a:hover {
+    color: #00A1E4;
     text-decoration: none;
-    /* transition-behavior: normal; */
-    transition-duration: 3s;
-    transition-timing-function: ease-out;
-    transition-delay: 0s;
-    transition-property: color;
+    transition: color 3s ease-out;
 }
 
 /* --- Секція Shortcuts (Нижні іконки) --- */
