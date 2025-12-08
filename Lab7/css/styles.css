@@ -1,0 +1,109 @@
+/* Базові стилі */
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Секція Hero (Велика картинка) --- */
+.hero-news {
+    /* Фонове зображення з сайту LPNU */
+    background: rgb(46,49,146) url('https://lpnu.ua/sites/default/files/styles/hero/public/2025/12/3/news/33878/lptoplight.jpg') no-repeat center top;
+    background-size: cover;
+    height: 400px; /* Висота банера */
+    position: relative;
+    
+    /* Flexbox для центрування контенту всередині банера */
+    display: flex;
+    justify-content: center; /* Центрування по горизонталі */
+    align-items: flex-end;   /* Притискаємо текст до низу */
+}
+
+/* Затемнення для кращої читабельності тексту */
+.hero-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    width: 100%;
+    padding: 20px 0 40px 0;
+    
+    /* Також робимо флексом, щоб вирівняти контейнер */
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+}
+
+.hero-news h2 a {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.hero-news h2 a:hover {
+    text-decoration: underline;
+    color: #ffcc00; /* Жовтий акцент при наведенні */
+}
+
+/* --- Секція Shortcuts (Нижні іконки) --- */
+.shortcuts-section {
+    background-color: #f8f9fa;
+    padding: 30px 0;
+}
+
+.shortcuts-container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+
+    /* ГОЛОВНЕ: Flexbox налаштування для сітки */
+    display: flex;
+    flex-wrap: wrap; /* Дозволяє переносити елементи на новий рядок */
+    justify-content: space-between; /* Рівномірний розподіл простору */
+    gap: 20px; /* Відступ між елементами */
+}
+
+/* Стиль окремого елемента (посилання) */
+.shortcut-item {
+    display: flex;
+    flex-direction: column; /* Іконка зверху, текст знизу */
+    align-items: center;    /* Центрування по горизонталі */
+    text-align: center;
+    
+    /* Flex-властивості для адаптивності */
+    flex-grow: 1;    /* Може рости */
+    flex-shrink: 0;  /* Не стискається занадто сильно */
+    flex-basis: 200px; /* Базова ширина елемента */
+    
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.shortcut-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Стилі для іконок SVG */
+.icon-wrapper {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+    color: #f58220; /* Оранжевий колір LPNU */
+}
+
+.shortcut-item span {
+    font-weight: bold;
+    font-size: 16px;
+    color: #2e3192; /* Синій колір LPNU */
+}
