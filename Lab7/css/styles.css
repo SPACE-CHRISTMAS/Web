@@ -40,14 +40,14 @@ a {
     width: 90%;
 }
 
-#hero a:visited {
+.hero-news h2 a {
     color: #fff;
     text-decoration: none;
     transition: color 3s ease-out;
 }
 
-#hero a:hover {
-    color: #00A1E4;
+.hero-news h2 a:hover {
+    color: #fff;
     text-decoration: none;
     transition: color 3s ease-out;
 }
