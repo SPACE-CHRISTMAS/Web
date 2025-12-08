@@ -52,7 +52,11 @@ a {
     /* color: #ffcc00; Жовтий акцент при наведенні */
     color:lightblue;
     text-decoration: none;
-    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* transition-behavior: normal; */
+    transition-duration: 3s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    transition-property: color;
 }
 
 /* --- Секція Shortcuts (Нижні іконки) --- */
