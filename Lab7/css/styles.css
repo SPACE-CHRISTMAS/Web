@@ -50,7 +50,7 @@ a {
 .hero-news h2 a:hover {
     /* text-decoration: underline; */
     /* color: #ffcc00; Жовтий акцент при наведенні */
-    color: #2e3192;
+    color: cornflowerblue;
     text-decoration: none;
     /* transition-behavior: normal; */
     transition-duration: 3s;
