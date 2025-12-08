@@ -55,7 +55,7 @@ a {
     /* transition-behavior: normal; */
     transition-duration: 3s;
     transition-timing-function: ease-out;
-    transition-delay: 0s;
+    transition-delay: 3s;
     transition-property: color;
 }
 
