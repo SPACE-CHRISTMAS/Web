@@ -54,7 +54,7 @@ a {
     text-decoration: none;
     /* transition-behavior: normal; */
     transition-duration: 3s;
-    transition-timing-function: ease-in;
+    transition-timing-function: ease-out;
     transition-delay: 0s;
     transition-property: color;
 }
