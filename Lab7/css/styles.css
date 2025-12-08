@@ -53,9 +53,9 @@ a {
     color: #2e3192;
     text-decoration: none;
     /* transition-behavior: normal; */
-    transition-duration: 3s;
+    transition-duration: 0s;
     transition-timing-function: ease-out;
-    transition-delay: 3s;
+    transition-delay: 0s;
     transition-property: color;
 }
 
