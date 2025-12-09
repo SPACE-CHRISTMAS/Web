@@ -1,0 +1,468 @@
+/* ======================================================================
+   1. БАЗОВІ СТИЛІ (RESET & TYPOGRAPHY)
+   ====================================================================== */
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    line-height: 1.5;
+    background-color: #fcfcfc;
+    font-size: 1.6rem; /* 16px base size */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease-out;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ======================================================================
+   2. LAYOUT & CONTAINER
+   ====================================================================== */
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px;
+    width: 90%;
+}
+
+/* ======================================================================
+   3. HEADER / NAVBAR STYLES (Mobile First)
+   ====================================================================== */
+#navbar .container {
+    position: relative;
+}
+
+.navbar {
+    border-bottom: 0px solid #e7e7e7;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.navbar.logo {
+    float: left !important;
+    margin: 0px;
+    background: rgb(46, 49, 146);
+}
+
+.logo {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.logo h1 span {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.logo svg {
+    height: 70px;
+    fill: #312783;
+}
+
+.navbar-header {
+    text-align: center;
+    padding: 0 !important;
+}
+
+.navbar-toggle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    margin-top: 0;
+}
+
+/* Мобільне меню (розгорнуте) */
+#navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    border-top: none;
+    padding-top: 0;
+    overflow: visible;
+}
+
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    list-style: none;
+    margin: 0;
+}
+
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul li {
+    display: inline-block;
+}
+
+#navbar-collapse #block-lpnu-search {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+#navbar-collapse .navbar-nav > li {
+    border-bottom: 1px solid #eee;
+}
+
+#navbar-collapse .navbar-nav > li:last-child {
+    border-bottom: none;
+}
+
+/* ======================================================================
+   4. HEADER DESKTOP ADAPTATION (min-width: 1200px)
+   ====================================================================== */
+@media (min-width: 1200px) {
+    /* Логотип */
+    .navbar-header .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo svg {
+        background-color: #312783;
+        height: 150px;
+        width: 150px;
+        padding: 20px;
+        box-sizing: content-box; /* Fix for padding issue if needed */
+    }
+
+    .logo h1 span {
+        background-color: #312783;
+        color: white;
+        text-transform: uppercase;
+        line-height: 1.4;
+        vertical-align: middle;
+        font-size: 18px;
+        margin-left: 30px;
+        max-width: 360px;
+        padding: 10px; /* Optional visual polish */
+    }
+
+    /* Блоки справа (мова, пошук) */
+    #navbar-collapse {
+        display: block !important;
+        height: auto !important;
+        border-top: none;
+        padding-top: 10px;
+        overflow: visible;
+    }
+    
+    #block-lpnu-peremikachmovi-2 {
+        float: inline-end;
+    }
+    
+    #block-lpnu-peremikachmovi-2 ul {
+        margin: 0 0 5px 0;
+        padding: 0;
+        list-style: none;
+        border-bottom: none;
+    }
+    
+    #block-lpnu-peremikachmovi-2 ul li {
+        display: inline;
+        padding: 0 4px;
+        font-size: 12px;
+    }
+    
+    #block-lpnu-search {
+        float: right;
+        clear: right;
+        width: 250px;
+        border-bottom: none;
+        padding: 0;
+    }
+
+    /* Головне Меню */
+    #block-lpnu-main-menu {
+        clear: both;
+        border-top: 1px solid #e7e7e7;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+    
+    .navbar-nav {
+        margin: 0;
+        float: none;
+        width: 100%;
+        display: flex; /* Flexbox usually safer than floats here */
+    }
+    
+    .navbar-nav > li {
+        float: left;
+        border-bottom: none;
+    }
+    
+    .navbar-nav > li > a {
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 10px 15px;
+        color: #333;
+    }
+    
+    .navbar-nav > li.dropdown:hover > .dropdown-menu {
+        display: block;
+        column-count: 1;
+        max-width: 550px;
+    }
+
+    a.logo:link, a.logo:visited {
+        text-decoration: none;
+        color: #F0F0F0;
+        transition: color 3s, background 3s;
+    }
+}
+
+/* ======================================================================
+   5. HERO SECTION (Main Content)
+   ====================================================================== */
+#hero {
+    font-family: 'Roboto Condensed', sans-serif;
+    position: relative;
+    width: 100% !important;
+    background: rgb(46,49,146) url('https://lpnu.ua/sites/default/files/styles/hero/public/2025/12/3/news/33878/lptoplight.jpg') no-repeat center top !important;
+    background-size: cover !important;
+    min-height: 550px; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#hero .container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1140px; 
+    max-width: 100%;
+}
+
+.shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(46, 49, 146, 0), rgba(46, 49, 146, 1));
+    min-height: 295px;
+}
+
+#hero h2 {
+    text-align: center;
+    font-size: 5rem;
+    margin: 0 0 5rem 0;
+    position: relative; /* Ensure it sits above shadow */
+    z-index: 2;
+}
+
+#hero a:link, #hero a:visited { color: #fff; transition: color 3s ease-out; }
+#hero a:hover, #hero a:active { color: #00A1E4; }
+
+/* ======================================================================
+   6. SHORTCUTS SECTION
+   ====================================================================== */
+#block-lpnushortcutstop4 {
+    background: rgb(46, 49, 146);
+    overflow: hidden; 
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#block-lpnushortcutstop4:before {
+    display: block;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background-image: linear-gradient(to right, #2E3192 0%, #fff 50%, #2E3192 100%);
+}
+
+/* Shortcuts Layout */
+#block-lpnushortcutstop4 .container-fluid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#block-lpnushortcutstop4 .col-sm-3 {
+    float: left;
+    width: 25%;
+    position: relative;
+    min-height: 134px; 
+    box-sizing: border-box; /* Important for padding/width calculation */
+}
+
+/* Mobile responsive for shortcuts (Fallback if bootstrap grid isn't present) */
+@media (max-width: 768px) {
+    #block-lpnushortcutstop4 .col-sm-3 {
+        width: 50%;
+    }
+}
+
+#block-lpnushortcutstop4 h2 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    font-size: 2.1rem;
+    color: white;
+}
+
+#block-lpnushortcutstop4 h2 svg {
+    color: #00A1E4;
+    margin-right: 0.5rem;
+}
+
+#block-lpnushortcutstop4 a:link, #block-lpnushortcutstop4 a:visited { color: #fff; transition: color 3s ease-out; }
+#block-lpnushortcutstop4 a:hover, #block-lpnushortcutstop4 a:active { color: #00A1E4; }
+
+.shortcut-1, .shortcut-3 { background: none; }
+.shortcut-2, .shortcut-4 { background: #252775; }
+
+/* ======================================================================
+   7. NEWS SECTION & CARDS
+   ====================================================================== */
+.news {
+    padding: 40px 0;
+}
+
+.news__heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.news__heading-link {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2e3192;
+    text-transform: uppercase;
+}
+
+.news__heading-link:hover {
+    color: #f58220;
+}
+
+/* Grid Layout */
+.news__grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr; /* Mobile default */
+}
+
+.news-card {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    /* Removed flex-basis logic in favor of CSS Grid */
+}
+
+.news-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.news-card__link-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-card__image-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.news-card:hover .news-card__image {
+    transform: scale(1.05);
+}
+
+.news-card__content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.news-card__date {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.news-card__title {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.news-card__link-wrapper:hover .news-card__title {
+    color: #2e3192;
+}
+
+/* --- News Grid Responsiveness --- */
+@media (min-width: 576px) {
+    .news__grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 columns */
+    }
+}
+
+@media (min-width: 992px) {
+    /* Desktop adjustments if needed */
+}
+
+@media (min-width: 1024px) {
+    .news__grid {
+        grid-template-columns: repeat(4, 1fr); /* Desktop: 4 columns */
+    }
+}
+
+/* ======================================================================
+   8. CONTENT ARTICLE STYLES
+   ====================================================================== */
+.article-header {
+    margin-bottom: 20px;
+}
+
+.article-header h2 {
+    color: #2e3192;
+    margin-bottom: 5px;
+}
+
+.article-header p {
+    color: #666;
+    font-style: italic;
+    font-size: 1.4rem;
+}

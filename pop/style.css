@@ -1,0 +1,184 @@
+/* ======================================================================
+   БАЗОВІ СТИЛІ (Mobile First)
+   Для мобільних пристроїв, де все йде в один стовпчик.
+   ====================================================================== */
+
+#navbar .container {
+    position: relative;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navbar {
+    border-bottom: 0px solid #e7e7e7;
+    margin-bottom: 20px;
+    position: relative;
+}
+.navbar.logo {
+    float: left !important;
+    margin: 0px;
+    background: rgb(46, 49, 146);
+}
+.logo {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: normal;
+}
+.navbar-header {
+    text-align: center;
+    padding: 0 !important;
+}
+.logo {
+    display: inline-block;
+}
+.logo h1 span {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+.logo svg {
+    height: 70px;
+    fill: #312783;
+}
+.navbar-toggle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    margin-top: 0;
+}
+
+/* Стилі для блоків всередині розгорнутого мобільного меню */
+#navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    border-top: none;
+    padding-top: 0;
+    overflow: visible;
+}
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    list-style: none;
+    margin: 0;
+}
+#navbar-collapse #block-lpnu-peremikachmovi-2 ul li {
+    display: inline-block;
+}
+#navbar-collapse #block-lpnu-search {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+#navbar-collapse .navbar-nav > li {
+    border-bottom: 1px solid #eee;
+}
+#navbar-collapse .navbar-nav > li:last-child {
+    border-bottom: none;
+}
+
+
+/* ======================================================================
+   АДАПТАЦІЯ ДЛЯ ШИРОКИХ ЕКРАНІВ (Десктоп) - від 992px
+   ====================================================================== */
+
+@media (min-width: 1200px) {
+    /* ---- ПОЧАТОК ЗМІН ---- */
+
+    /* Робимо контейнер логотипу гнучким для кращого вирівнювання */
+    .navbar-header .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo svg {
+        background-color: #312783;
+        height: 150px;
+        width: 150px;
+        padding: 20px;
+    }
+
+    .logo h1 span {
+        background-color: #312783;
+        color: white;
+        text-transform: uppercase;
+        line-height: 1.4;
+        vertical-align: middle;
+        font-size: 18px;
+        margin-left: 30px;
+        max-width: 360px;
+    }
+
+    /* ---- КІНЕЦЬ ЗМІН ---- */
+    
+    /* Контейнер для правих елементів та меню */
+    #navbar-collapse {
+        display: block !important;
+        height: auto !important;
+        border-top: none;
+        padding-top: 10px;
+        overflow: visible;
+    }
+    
+    /* Блоки справа */
+    #block-lpnu-peremikachmovi-2 {
+        float: inline-end;
+    }
+    #block-lpnu-peremikachmovi-2 ul {
+        margin: 0 0 5px 0;
+        padding: 0;
+        list-style: none;
+    }
+    #block-lpnu-peremikachmovi-2 ul li {
+        display: inline;
+        padding: 0 4px;
+        font-size: 12px;
+    }
+    #block-lpnu-search {
+        float: right;
+        clear: right;
+        width: 250px;
+    }
+
+    /* НИЖНІЙ ПОВЕРХ (Меню) */
+    #block-lpnu-main-menu {
+        clear: both;
+        border-top: 1px solid #e7e7e7;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+    .navbar-nav {
+        margin: 0;
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav > li {
+        float: left;
+    }
+    .navbar-nav > li > a {
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 10px 15px;
+        color: #333;
+    }
+    
+    /* Випадаючі меню */
+    .navbar-nav > li.dropdown:hover > .dropdown-menu {
+        display: block;
+        column-count: 1;
+        max-width: 550px;
+    }
+
+    a.logo:link, a.logo:visited {
+        text-decoration: none;
+        color: #F0F0F0;
+        transition: color 3s;
+        transition: background 3s;
+    }
+}
