@@ -1,0 +1,249 @@
+// 1. Змінні (Variables)
+$primary-color: #3498db;
+$hover-color: darken($primary-color, 15%); // Використання функції кольору
+$bg-color: #f9f9f9;
+$card-bg: #ffffff;
+$text-color: #333;
+$border-radius: 8px;
+
+// Мапа брейкпоінтів
+$breakpoints: (
+    mobile: 576px,
+    tablet: 768px,
+    desktop: 1024px
+);
+
+// 2. Міксини (Mixins)
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+@mixin card-shadow {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+// 3. Глобальні стилі
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: $text-color;
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// Вкладеність (Nesting) для Header
+header {
+    background-color: $primary-color;
+    color: white;
+    padding: 1rem 0;
+    
+    // Тінь для хедера
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        flex-wrap: wrap; // Щоб на мобільному не ламалося
+
+        li {
+            margin: 5px 15px;
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                text-transform: uppercase;
+                transition: color 0.3s;
+
+                // Амперсанд (&) - селектор батьківського елемента
+                &:hover {
+                    color: lighten($primary-color, 40%);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1; // Розтягує контент, притискаючи футер до низу
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    @include respond-to(tablet) {
+        flex-direction: row;
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+// Стилі для Main
+main {
+    flex: 3; // Займає більше місця ніж aside
+    padding: 10px;
+
+    .top-news {
+        margin-bottom: 30px;
+
+        .top-news__item {
+            text-align: center;
+            background: $card-bg;
+            padding: 20px;
+            border-radius: $border-radius;
+            @include card-shadow; // Використання міксина
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            img {
+                width: 100%;
+                max-height: 400px;
+                object-fit: cover;
+                border-radius: $border-radius;
+            }
+
+            h1 {
+                font-size: 2rem;
+                color: $primary-color;
+                margin: 15px 0;
+            }
+
+            time {
+                color: lighten($text-color, 30%);
+                font-style: italic;
+            }
+        }
+    }
+
+    // Grid сітка
+    .news-grid {
+        display: grid;
+        gap: 20px;
+
+        // Мобільна версія (за замовчуванням 1 колонка)
+        grid-template-columns: 1fr;
+
+        // Планшет
+        @include respond-to(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        // Десктоп
+        @include respond-to(desktop) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .news-item {
+            background-color: $card-bg;
+            padding: 15px;
+            border: 1px solid lighten($text-color, 60%);
+            border-radius: $border-radius;
+            display: flex;
+            flex-direction: column;
+            @include card-shadow;
+
+            &:hover {
+                border-color: $primary-color;
+            }
+
+            img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                margin: 10px 0;
+                color: darken($primary-color, 10%);
+            }
+
+            time {
+                font-size: 0.8rem;
+                color: grey;
+                margin-bottom: 5px;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+// Стилі для Aside (Бічна панель)
+aside {
+    flex: 1;
+    background-color: $card-bg;
+    padding: 20px;
+    border-radius: $border-radius;
+    height: fit-content; // Щоб не розтягувався на всю висоту
+    @include card-shadow;
+
+    h3 {
+        font-size: 1.2rem;
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $primary-color;
+    }
+
+    .recent-news {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin: 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed lighten($text-color, 50%);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: $text-color;
+                font-weight: 600;
+                display: block;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+
+            time {
+                font-size: 0.8rem;
+                color: #888;
+                display: block;
+                margin-top: 4px;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: darken($primary-color, 20%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; // Притискає футер вниз
+}
