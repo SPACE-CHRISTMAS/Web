@@ -4,12 +4,12 @@ import { Course } from './models/Course.js'; // Якщо файли в папц�
 import { Teacher } from './models/Teacher.js';
 import { Student } from './models/Student.js';
 
-console.log("--- Start Lab 14 ---");
+console.log("--- Lab 14 ---");
 
 // 1. Створити об'єкти (Викладач, Студенти)
-const teacher1 = new Teacher("Олександр Петрович");
-const student1 = new Student("Іван");
-const student2 = new Student("Марія");
+const teacher1 = new Teacher("Ігор Володимирович");
+const student1 = new Student("Драч Іван");
+const student2 = new Student("Дмитро Принада");
 
 // 2. Створити курси та додати їх викладачу
 const jsCourse = new Course("JavaScript Pro");
