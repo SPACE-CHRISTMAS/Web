@@ -1,0 +1,183 @@
+/* Змінні для сучасних кольорів */
+:root {
+    --primary: #4f46e5; /* Насичений індиго */
+    --primary-hover: #4338ca;
+    --bg-color: #f8fafc; /* Світло-сіро-синій фон */
+    --surface: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+/* Базові стилі */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* HEADER */
+header {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, var(--primary), #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    font-size: 0.95rem;
+}
+
+/* ОСНОВНИЙ КОНТЕНТ (CSS Grid) */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Ліва колонка в 3 рази більша за праву */
+    gap: 30px;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2, h3 {
+    margin-top: 0;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+article, aside {
+    background-color: var(--surface);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    border: 1px solid var(--border);
+}
+
+/* КАРТКИ ЛАБОРАТОРНИХ РОБІТ */
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.card-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-weight: 500;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.card-list li a:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    border-color: var(--primary);
+}
+
+/* БОКОВЕ МЕНЮ (Інші курси) */
+.side-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-list li {
+    margin-bottom: 12px;
+}
+
+.side-list li a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    border-left: 4px solid transparent;
+}
+
+.side-list li a:hover {
+    background-color: #e0e7ff;
+    border-left-color: var(--primary);
+    color: var(--primary-hover);
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+/* АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ */
+@media (max-width: 850px) {
+    main {
+        grid-template-columns: 1fr; /* Колонки стають одна під одною */
+        margin: 20px auto;
+    }
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
