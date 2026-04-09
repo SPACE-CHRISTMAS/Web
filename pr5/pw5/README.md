@@ -57,3 +57,23 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Deploy to Netlify
+
+This project is ready for Netlify deployment as an Angular single-page app.
+
+### Fastest option
+
+1. Run `npm run build`.
+2. Open Netlify and create a new site.
+3. Connect this folder or drag-and-drop the project after build.
+4. Use `dist/pw5/browser` as the publish directory.
+
+### Git-based option
+
+1. Push the project to GitHub.
+2. Import the repository in Netlify.
+3. Set the build command to `npm run build`.
+4. Set the publish directory to `dist/pw5/browser`.
+
+The included `netlify.toml` already sets the build command, publish directory, and SPA redirect rule.
