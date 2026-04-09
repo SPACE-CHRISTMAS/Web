@@ -139,6 +139,30 @@
       color: var(--ink-soft);
     }
 
+    .startup-loader--error {
+      max-width: 560px;
+      margin-inline: auto;
+      background: rgba(255, 245, 240, 0.82);
+      border: 1px solid rgba(255, 111, 60, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .startup-loader__hint {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #614b43;
+    }
+
+    .startup-loader__hint code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+      font-size: 0.94em;
+      background: rgba(22, 38, 58, 0.08);
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+
     .startup-loader__ring {
       width: 42px;
       aspect-ratio: 1;
@@ -195,7 +219,7 @@
 
     <section class="app-card" aria-label="Основний застосунок">
       <app-root>
-        <div class="startup-loader" role="status" aria-live="polite">
+        <div class="startup-loader" role="status" aria-live="polite" data-loader>
           <div class="startup-loader__ring" aria-hidden="true"></div>
           <strong>Завантажуємо застосунок...</strong>
           <span>Підключення модулів Angular</span>
@@ -205,5 +229,24 @@
 
     <footer class="site-foot">Лабораторна робота • 2026</footer>
   </main>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const root = document.querySelector('app-root');
+      const loader = root?.querySelector('[data-loader]');
+
+      setTimeout(() => {
+        if (!root || !loader || !root.contains(loader)) return;
+
+        loader.classList.add('startup-loader--error');
+        loader.innerHTML = `
+          <strong>Angular не запустився в цьому режимі.</strong>
+          <p class="startup-loader__hint">
+            Відкривай сайт через dev-сервер: <code>npm start</code> у папці проєкту,
+            потім переходь на <code>http://localhost:4200</code>.
+          </p>
+        `;
+      }, 3500);
+    });
+  </script>
 </body>
 </html>
