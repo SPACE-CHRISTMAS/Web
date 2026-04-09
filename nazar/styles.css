@@ -1,0 +1,158 @@
+/* Змінні для кольорової теми */
+:root {
+    --bg-color: #0f172a;       /* Глибокий темний фон */
+    --card-bg: #1e293b;        /* Фон карток */
+    --text-main: #f8fafc;      /* Основний світлий текст */
+    --text-muted: #94a3b8;     /* Приглушений текст */
+    --accent: #38bdf8;         /* Неоновий синій акцент */
+    --accent-hover: #0284c7;   /* Темніший синій для ховеру */
+}
+
+/* Базові стилі */
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HEADER */
+header {
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+
+.nav-brand {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ОСНОВНИЙ КОНТЕНТ */
+main {
+    display: flex;
+    flex-wrap: wrap; /* Дозволяє блокам падати вниз на мобільних */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 30px;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+article {
+    flex: 3;
+    min-width: 300px;
+}
+
+aside {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    height: fit-content;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: var(--accent);
+    border-bottom: 1px solid #334155;
+    padding-bottom: 15px;
+    margin-top: 0;
+}
+
+/* СІТКА ЛАБОРАТОРНИХ (Cards Layout) */
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+.lab-grid a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid #334155;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.lab-grid a:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* СПИСОК КУРСІВ (Aside) */
+.course-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.course-list li {
+    margin-bottom: 10px;
+}
+
+.course-list a {
+    display: block;
+    padding: 12px 15px;
+    background-color: #0f172a;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.course-list a:hover {
+    background-color: #1e293b;
+    color: var(--text-main);
+    border-left: 3px solid var(--accent);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-muted);
+    border-top: 1px solid #334155;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
