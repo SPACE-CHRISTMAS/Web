@@ -1,17 +1,17 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodoService } from './services/todo.service'; 
+import { TodoService } from './services/todo.service';
 import { Todo } from './models/todo.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './app.html', // ИСПРАВЛЕНО: указывает на твой файл app.html
-  styleUrls: ['./app.scss'], // ИСПРАВЛЕНО: указывает на твой файл app.scss
+  templateUrl: './app.html',
+  styleUrls: ['./app.scss'],
 })
-export class App implements OnInit { // ИСПРАВЛЕНО: класс называется просто App
-  USER_ID = 5; // Впиши свой номер по журналу сюда!
+export class App implements OnInit {
+  USER_ID = 11; // Впишіть свій номер за журналом
 
   private todoService = inject(TodoService);
   private cdr = inject(ChangeDetectorRef);
@@ -22,23 +22,6 @@ export class App implements OnInit { // ИСПРАВЛЕНО: класс наз�
   currentEditId: string | null = null;
 
   formData: Todo = this.getEmptyForm();
-
-  get totalTasks(): number {
-    return this.todos.length;
-  }
-
-  get completedTasks(): number {
-    return this.todos.filter((task) => task.isDone).length;
-  }
-
-  get activeTasks(): number {
-    return this.totalTasks - this.completedTasks;
-  }
-
-  get completionRate(): number {
-    if (!this.totalTasks) return 0;
-    return Math.round((this.completedTasks / this.totalTasks) * 100);
-  }
 
   ngOnInit() {
     this.fetchTodos();
@@ -60,11 +43,7 @@ export class App implements OnInit { // ИСПРАВЛЕНО: класс наз�
     this.cdr.detectChanges();
     this.todoService.getAll().subscribe({
       next: (data) => {
-        // ИСПРАВЛЕНО: Фильтруем данные, оставляем ТОЛЬКО твои задачи
-        this.todos = data
-          .filter(task => Number(task.userId) === this.USER_ID)
-          .reverse();
-          
+        this.todos = data.reverse();
         this.isLoading = false;
         this.cdr.detectChanges();
       },

@@ -1,6 +1,6 @@
 # Pw5
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
 
 ## Development server
 
@@ -60,20 +60,25 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Deploy to Netlify
 
-This project is ready for Netlify deployment as an Angular single-page app.
+This project is preconfigured for Netlify with `netlify.toml`:
 
-### Fastest option
+- Build command: `npm run build`
+- Publish directory: `dist/pw5`
+- SPA fallback redirect to `index.html`
 
-1. Run `npm run build`.
-2. Open Netlify and create a new site.
-3. Connect this folder or drag-and-drop the project after build.
-4. Use `dist/pw5/browser` as the publish directory.
+### Option A: Deploy via Netlify UI (recommended)
 
-### Git-based option
+1. Push this repository to GitHub.
+2. In Netlify, click **Add new site** -> **Import an existing project**.
+3. Select your GitHub repository.
+4. Netlify will read `netlify.toml` automatically.
+5. Click **Deploy site**.
 
-1. Push the project to GitHub.
-2. Import the repository in Netlify.
-3. Set the build command to `npm run build`.
-4. Set the publish directory to `dist/pw5/browser`.
+### Option B: Deploy via Netlify CLI
 
-The included `netlify.toml` already sets the build command, publish directory, and SPA redirect rule.
+```bash
+npm i -g netlify-cli
+netlify login
+netlify init
+netlify deploy --build --prod
+```

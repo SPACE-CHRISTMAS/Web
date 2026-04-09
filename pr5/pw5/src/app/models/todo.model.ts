@@ -1,10 +1,10 @@
 export interface Todo {
-  id?: string;
-  userId: number;
-  title: string;
-  description: string;
-  tag: string;
-  deadline: string;
-  createdAt?: number;
-  isDone: boolean;
+    id?: string;
+    userId: number;
+    title: string;
+    description: string;
+    tag: string;
+    deadline: string;
+    createdAt?: number;
+    isDone: boolean;
 }
