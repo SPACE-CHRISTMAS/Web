@@ -23,6 +23,23 @@ export class App implements OnInit { // ИСПРАВЛЕНО: класс наз�
 
   formData: Todo = this.getEmptyForm();
 
+  get totalTasks(): number {
+    return this.todos.length;
+  }
+
+  get completedTasks(): number {
+    return this.todos.filter((task) => task.isDone).length;
+  }
+
+  get activeTasks(): number {
+    return this.totalTasks - this.completedTasks;
+  }
+
+  get completionRate(): number {
+    if (!this.totalTasks) return 0;
+    return Math.round((this.completedTasks / this.totalTasks) * 100);
+  }
+
   ngOnInit() {
     this.fetchTodos();
   }

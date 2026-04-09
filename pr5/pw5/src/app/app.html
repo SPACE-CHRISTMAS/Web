@@ -1,7 +1,59 @@
 <div class="app-container">
   <header class="app-header">
+    <p class="app-header__kicker">Course Project Demo</p>
     <h1 class="app-header__title">Менеджер завдань - Студент #{{ USER_ID }}</h1>
+    <p class="app-header__subtitle">
+      SPA-застосунок для керування задачами з підтримкою створення, редагування,
+      видалення та контролю виконання у реальному часі.
+    </p>
   </header>
+
+  <section class="project-overview" aria-label="Огляд проєкту">
+    <article class="overview-card">
+      <h2 class="overview-card__title">Про проєкт</h2>
+      <p class="overview-card__text">
+        Ця лабораторна робота реалізована на Angular з компонентним підходом,
+        роботою з формами та інтеграцією з API для збереження списку завдань.
+      </p>
+      <ul class="overview-list">
+        <li>CRUD-операції для задач</li>
+        <li>Маркування задач за категоріями</li>
+        <li>Відмітка виконання та дедлайни</li>
+      </ul>
+    </article>
+
+    <article class="overview-card overview-card--accent">
+      <h2 class="overview-card__title">Технології</h2>
+      <div class="tech-grid">
+        <span>Angular</span>
+        <span>TypeScript</span>
+        <span>SCSS</span>
+        <span>REST API</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="stats-grid" aria-label="Статистика задач">
+    <article class="stat-card">
+      <p class="stat-card__label">Всього задач</p>
+      <p class="stat-card__value">{{ totalTasks }}</p>
+    </article>
+    <article class="stat-card">
+      <p class="stat-card__label">Виконано</p>
+      <p class="stat-card__value">{{ completedTasks }}</p>
+    </article>
+    <article class="stat-card">
+      <p class="stat-card__label">Активні</p>
+      <p class="stat-card__value">{{ activeTasks }}</p>
+    </article>
+    <article class="stat-card stat-card--wide">
+      <p class="stat-card__label">Рівень виконання</p>
+      <p class="stat-card__value">{{ completionRate }}%</p>
+      <div class="stat-card__progress" role="img" aria-label="Прогрес виконання задач">
+        <span [style.width.%]="completionRate"></span>
+      </div>
+    </article>
+  </section>
 
   <section class="todo-form">
     <form (ngSubmit)="onSubmit()">

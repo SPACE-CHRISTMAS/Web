@@ -1,13 +1,209 @@
 <!doctype html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="utf-8">
-  <title>Pw5</title>
+  <title>TaskFlow | Демонстрація лабораторної</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Демонстраційний сайт лабораторної роботи: менеджер завдань на Angular.">
+  <meta name="theme-color" content="#0f172a">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f4efe6;
+      --bg-soft: #fffdf8;
+      --ink: #16263a;
+      --ink-soft: #4c5c70;
+      --accent: #ff6f3c;
+      --accent-2: #1f8a70;
+      --card-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
+      --card-border: rgba(255, 255, 255, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Manrope', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(40rem 40rem at 8% -5%, rgba(255, 111, 60, 0.3), transparent 70%),
+        radial-gradient(35rem 35rem at 100% 15%, rgba(31, 138, 112, 0.24), transparent 72%),
+        linear-gradient(145deg, var(--bg-main) 0%, #f8f6f1 50%, var(--bg-soft) 100%);
+      padding: clamp(16px, 3vw, 36px);
+      overflow-x: hidden;
+    }
+
+    .site-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      animation: reveal 700ms ease-out;
+    }
+
+    .site-head {
+      margin-bottom: 20px;
+      padding: 16px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .site-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 700 12px/1 'Space Grotesk', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-2);
+      margin-bottom: 10px;
+    }
+
+    .site-kicker::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 99px;
+    }
+
+    .site-title {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(26px, 5vw, 46px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      max-width: 620px;
+    }
+
+    .site-subtitle {
+      margin: 10px 0 0;
+      color: var(--ink-soft);
+      max-width: 640px;
+      font-size: clamp(15px, 2.2vw, 18px);
+    }
+
+    .site-chip {
+      border: 1px solid rgba(22, 38, 58, 0.18);
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.6);
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+      backdrop-filter: blur(5px);
+    }
+
+    .app-card {
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    app-root {
+      display: block;
+      min-height: 420px;
+      padding: clamp(12px, 2vw, 20px);
+    }
+
+    .startup-loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+      min-height: 360px;
+      color: var(--ink-soft);
+    }
+
+    .startup-loader__ring {
+      width: 42px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 4px solid rgba(22, 38, 58, 0.16);
+      border-top-color: var(--accent);
+      animation: spin 900ms linear infinite;
+    }
+
+    .site-foot {
+      margin-top: 14px;
+      text-align: right;
+      color: #5b6677;
+      font-size: 13px;
+      padding-right: 4px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .site-head {
+        padding-top: 8px;
+      }
+
+      .site-chip {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <main class="site-shell">
+    <header class="site-head">
+      <section>
+        <span class="site-kicker">Angular Project Showcase</span>
+        <h1 class="site-title">TaskFlow: Мій менеджер завдань для лабораторної роботи</h1>
+        <p class="site-subtitle">Проєкт демонструє роботу з формами, редагуванням, фільтрацією та збереженням задач через API.</p>
+      </section>
+      <div class="site-chip">Студентський demo-сайт</div>
+    </header>
+
+    <section class="app-card" aria-label="Основний застосунок">
+      <app-root>
+        <div class="startup-loader" role="status" aria-live="polite">
+          <div class="startup-loader__ring" aria-hidden="true"></div>
+          <strong>Завантажуємо застосунок...</strong>
+          <span>Підключення модулів Angular</span>
+        </div>
+      </app-root>
+    </section>
+
+    <footer class="site-foot">Лабораторна робота • 2026</footer>
+  </main>
 </body>
 </html>
