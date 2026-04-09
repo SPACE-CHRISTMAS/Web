@@ -5,7 +5,7 @@ export const todos = [
         title: "Вивчити основи Node.js",
         description: "Розібратися з модулем http та npm",
         tag: "Навчання",
-        deadline: "2024-12-01",
+        deadline: "2026-12-01",
         createdAt: 1700000000,
         isDone: true,
     }
