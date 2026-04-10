@@ -10,7 +10,7 @@ import { Todo } from './models/todo.model';
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   title = signal('pw5');
   USER_ID = 5;
 
