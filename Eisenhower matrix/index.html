@@ -92,17 +92,17 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Блок с кнопками действий (Вверх, Вниз, Удалить) */
+        /* Блок с кнопками действий */
         .task-actions {
             display: flex;
             gap: 8px;
-            opacity: 0; /* Скрыто по умолчанию */
+            opacity: 0; 
             transition: opacity 0.2s;
             margin-left: 10px;
         }
 
         .task-item:hover .task-actions {
-            opacity: 1; /* Показываем при наведении */
+            opacity: 1; 
         }
 
         .action-btn, .delete-btn {
@@ -119,9 +119,7 @@
             transition: color 0.2s;
         }
 
-        .action-btn:hover {
-            color: #fff;
-        }
+        .action-btn:hover { color: #fff; }
 
         .delete-btn {
             color: #ff6b6b;
@@ -129,9 +127,7 @@
             margin-left: 4px;
         }
 
-        .delete-btn:hover {
-            color: #ff4c4c;
-        }
+        .delete-btn:hover { color: #ff4c4c; }
 
         /* Панель управления */
         .controls {
@@ -150,9 +146,7 @@
             font-size: 16px;
         }
 
-        .control-item label {
-            margin-right: 15px;
-        }
+        .control-item label { margin-right: 15px; }
 
         input[type="text"] {
             flex-grow: 1;
@@ -173,9 +167,7 @@
             width: 44px;
             height: 24px;
         }
-
         .switch input { opacity: 0; width: 0; height: 0; }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -185,7 +177,6 @@
             transition: .3s;
             border-radius: 24px;
         }
-
         .slider:before {
             position: absolute;
             content: "";
@@ -197,14 +188,12 @@
             transition: .3s;
             border-radius: 50%;
         }
-
         input:checked + .slider { border-color: #aaa; }
         input:checked + .slider:before {
             transform: translateX(20px);
             background-color: #fff;
         }
 
-        /* Кнопка "Добавить" */
         .add-btn {
             width: 100%;
             background-color: #2d2d2d;
@@ -216,12 +205,15 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-
-        .add-btn:hover {
-            background-color: #3d3d3d;
+        .add-btn:hover { background-color: #3d3d3d; }
+        
+        .loading {
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+            height: 20px;
         }
 
-        /* Скроллбар */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
@@ -230,40 +222,35 @@
 <body>
 
     <h1>Матрица Эйзенхауэра</h1>
+    <div id="loadingStatus" class="loading">Загрузка данных из облака...</div>
 
     <div class="matrix-container">
-        <!-- Квадраты -->
         <div class="quadrant q-do">
             <div class="q-header">
-                <strong>СДЕЛАТЬ</strong>
-                <small>Срочно и Важно</small>
+                <strong>СДЕЛАТЬ</strong><small>Срочно и Важно</small>
             </div>
             <ul class="task-list" id="list-do"></ul>
         </div>
         <div class="quadrant q-plan">
             <div class="q-header">
-                <strong>ЗАПЛАНИРОВАТЬ</strong>
-                <small>Не срочно и Важно</small>
+                <strong>ЗАПЛАНИРОВАТЬ</strong><small>Не срочно и Важно</small>
             </div>
             <ul class="task-list" id="list-plan"></ul>
         </div>
         <div class="quadrant q-delegate">
             <div class="q-header">
-                <strong>ДЕЛЕГИРОВАТЬ</strong>
-                <small>Срочно и Не важно</small>
+                <strong>ДЕЛЕГИРОВАТЬ</strong><small>Срочно и Не важно</small>
             </div>
             <ul class="task-list" id="list-delegate"></ul>
         </div>
         <div class="quadrant q-eliminate">
             <div class="q-header">
-                <strong>УДАЛИТЬ</strong>
-                <small>Не срочно и Не важно</small>
+                <strong>УДАЛИТЬ</strong><small>Не срочно и Не важно</small>
             </div>
             <ul class="task-list" id="list-eliminate"></ul>
         </div>
     </div>
 
-    <!-- Панель управления -->
     <div class="controls">
         <div class="control-item">
             <label for="taskInput">Название задачи</label>
@@ -289,11 +276,54 @@
     </div>
 
     <script>
-        let tasks = JSON.parse(localStorage.getItem('matrixTasks')) || [];
+        // === ВАШИ ДАННЫЕ ===
+        const BIN_ID = '6a4b8c20f5f4af5e29661c57'; 
+        const API_KEY = '$2a$10$FfbvEpEcvDc0R8XqVBmJuuVffUlgDo.WmGuiKiS/dBvC3eA.8S.Xe'; // Начинается на $2...
+        // ==================================
+
+        let tasks = [];
+        const loadingStatus = document.getElementById('loadingStatus');
+
+        // Скачиваем задачи из облака при открытии сайта
+        async function loadTasksFromCloud() {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                if (!response.ok) throw new Error('Ошибка сети');
+                const data = await response.json();
+                tasks = data.record || [];
+                loadingStatus.innerText = ''; // Очищаем статус при успехе
+                renderTasks();
+            } catch (error) {
+                loadingStatus.innerText = 'Ошибка загрузки данных. Проверьте API_KEY.';
+                console.error(error);
+            }
+        }
+
+        // Отправляем задачи в облако
+        async function saveTasksToCloud() {
+            loadingStatus.innerText = 'Сохранение в облако...';
+            try {
+                await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify(tasks)
+                });
+                loadingStatus.innerText = 'Сохранено!';
+                setTimeout(() => loadingStatus.innerText = '', 2000); // Прячем надпись через 2 сек
+            } catch (error) {
+                loadingStatus.innerText = 'Ошибка сохранения :(';
+                console.error(error);
+            }
+        }
 
         function saveAndRender() {
-            localStorage.setItem('matrixTasks', JSON.stringify(tasks));
-            renderTasks();
+            renderTasks(); // Сразу обновляем экран
+            saveTasksToCloud(); // Фоном отправляем в облако
         }
 
         function renderTasks() {
@@ -306,7 +336,6 @@
                 const li = document.createElement('li');
                 li.className = 'task-item';
                 
-                // Добавлены кнопки "Вверх" (▲) и "Вниз" (▼)
                 li.innerHTML = `
                     <span>${task.text}</span>
                     <div class="task-actions">
@@ -333,19 +362,15 @@
             const text = input.value.trim();
             if (text === '') return;
 
-            const isUrgent = document.getElementById('urgentToggle').checked;
-            const isImportant = document.getElementById('importantToggle').checked;
-
             const newTask = {
                 id: Date.now(),
                 text: text,
-                urgent: isUrgent,
-                important: isImportant
+                urgent: document.getElementById('urgentToggle').checked,
+                important: document.getElementById('importantToggle').checked
             };
 
             tasks.push(newTask);
             input.value = '';
-            
             document.getElementById('urgentToggle').checked = false;
             document.getElementById('importantToggle').checked = false;
 
@@ -357,50 +382,41 @@
             saveAndRender();
         }
 
-        // Новая функция: Перемещение задачи вверх или вниз
         function moveTask(taskId, direction) {
-            // Находим индекс текущей задачи в общем массиве
             const index = tasks.findIndex(t => t.id === taskId);
             if (index === -1) return;
 
             const currentTask = tasks[index];
             let targetIndex = -1;
             
-            // Ищем ближайшую задачу в ТОЙ ЖЕ категории (чтобы поменяться с ней местами)
             if (direction === -1) { 
-                // Ищем вверх (предыдущую задачу)
                 for (let i = index - 1; i >= 0; i--) {
                     if (tasks[i].urgent === currentTask.urgent && tasks[i].important === currentTask.important) {
-                        targetIndex = i;
-                        break;
+                        targetIndex = i; break;
                     }
                 }
             } else { 
-                // Ищем вниз (следующую задачу)
                 for (let i = index + 1; i < tasks.length; i++) {
                     if (tasks[i].urgent === currentTask.urgent && tasks[i].important === currentTask.important) {
-                        targetIndex = i;
-                        break;
+                        targetIndex = i; break;
                     }
                 }
             }
 
-            // Если сосед найден, меняем их местами
             if (targetIndex !== -1) {
                 const temp = tasks[index];
                 tasks[index] = tasks[targetIndex];
                 tasks[targetIndex] = temp;
-                saveAndRender(); // Сохраняем и перерисовываем
+                saveAndRender(); 
             }
         }
 
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                addTask();
-            }
+            if (event.key === 'Enter') addTask();
         }
 
-        renderTasks();
+        // Запуск
+        loadTasksFromCloud();
     </script>
 </body>
 </html>
