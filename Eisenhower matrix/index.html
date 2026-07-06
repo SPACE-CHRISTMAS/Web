@@ -90,6 +90,11 @@
         }
 
         .task-item:hover { background-color: rgba(255, 255, 255, 0.1); }
+        
+        /* Щоб форматування тексту (списки) всередині завдань виглядало гарно */
+        .task-content { flex-grow: 1; }
+        .task-content ul, .task-content ol { margin: 4px 0 4px 20px; padding: 0; }
+        .task-content div { margin: 0; }
 
         /* Блок із кнопками дій */
         .task-actions {
@@ -97,6 +102,7 @@
             gap: 8px;
             opacity: 1; 
             margin-left: 10px;
+            flex-shrink: 0;
         }
 
         @media (min-width: 768px) {
@@ -117,14 +123,14 @@
         .delete-btn { color: #ff6b6b; font-size: 18px; margin-left: 4px; }
         .delete-btn:hover { color: #ff4c4c; }
 
-        /* Панель керування */
+        /* Панель керування та Редактор тексту */
         .controls {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             width: 100%;
             max-width: 800px;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .control-item {
@@ -136,16 +142,50 @@
 
         .control-item label { margin-right: 15px; }
 
-        input[type="text"] {
-            flex-grow: 1;
-            background-color: #1e1e1e;
-            border: none;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
+        .editor-container {
             width: 100%;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+        }
+        .editor-container:focus-within { border-color: #555; }
+
+        .editor-toolbar {
+            background-color: #2d2d2d;
+            padding: 6px 10px;
+            display: flex;
+            gap: 5px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .toolbar-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .toolbar-btn:hover { background-color: #444; color: #fff; }
+
+        #taskInput {
+            min-height: 80px;
+            padding: 12px 16px;
+            outline: none;
+            overflow-y: auto;
+            color: white;
+            font-size: 14px;
+        }
+        #taskInput:empty:before {
+            content: attr(placeholder);
+            color: #888;
+            pointer-events: none;
         }
 
         /* Стилізація перемикачів */
@@ -193,6 +233,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: background 0.2s;
+            margin-top: 10px;
         }
         .add-btn:hover { background-color: #3d3d3d; }
         
@@ -207,18 +248,14 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
 
-        /* ========================================= */
         /* АДАПТИВНІСТЬ ДЛЯ ТЕЛЕФОНІВ */
-        /* ========================================= */
         @media (max-width: 650px) {
             .matrix-container {
                 grid-template-columns: 1fr; 
                 grid-template-rows: auto;   
                 height: auto;
             }
-            .quadrant {
-                min-height: 200px; 
-            }
+            .quadrant { min-height: 200px; }
             .controls {
                 grid-template-columns: 1fr; 
                 gap: 15px;
@@ -226,10 +263,9 @@
             .control-item.full-width-mobile {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 10px;
             }
-            .control-item.full-width-mobile input {
-                margin-top: 10px;
-            }
+            .editor-container { margin-top: 5px; }
         }
     </style>
 </head>
@@ -267,24 +303,35 @@
 
     <div class="controls">
         <div class="control-item full-width-mobile">
-            <label for="taskInput">Назва завдання</label>
-            <input type="text" id="taskInput" onkeypress="handleKeyPress(event)">
+            <!-- Редактор тексту замість звичайного input -->
+            <div class="editor-container">
+                <div class="editor-toolbar">
+                    <button class="toolbar-btn" onclick="formatText('bold')" title="Жирний"><b>B</b></button>
+                    <button class="toolbar-btn" onclick="formatText('italic')" title="Курсив"><i>I</i></button>
+                    <button class="toolbar-btn" onclick="formatText('strikeThrough')" title="Закреслений"><del>S</del></button>
+                    <div style="width: 1px; background: #444; margin: 0 5px;"></div>
+                    <button class="toolbar-btn" onclick="formatText('insertOrderedList')" title="Нумерований список">1.</button>
+                    <button class="toolbar-btn" onclick="formatText('insertUnorderedList')" title="Маркерований список">•</button>
+                </div>
+                <div id="taskInput" contenteditable="true" placeholder="Опишіть завдання... (Ctrl+Enter для збереження)" onkeydown="handleKeyPress(event)"></div>
+            </div>
         </div>
-        <div class="control-item">
-            <label>Терміново</label>
-            <label class="switch">
-                <input type="checkbox" id="urgentToggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="control-item">
-            <label>Важливо</label>
-            <label class="switch">
-                <input type="checkbox" id="importantToggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="control-item">
+        
+        <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+            <div class="control-item">
+                <label>Терміново</label>
+                <label class="switch">
+                    <input type="checkbox" id="urgentToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="control-item">
+                <label>Важливо</label>
+                <label class="switch">
+                    <input type="checkbox" id="importantToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
             <button class="add-btn" onclick="addTask()">Додати завдання</button>
         </div>
     </div>
@@ -292,11 +339,17 @@
     <script>
         // === ВАШІ ДАНІ ===
         const BIN_ID = '6a4b8c20f5f4af5e29661c57'; 
-        const API_KEY = '$2a$10$FfbvEpEcvDc0R8XqVBmJuuVffUlgDo.WmGuiKiS/dBvC3eA.8S.Xe';
+        const API_KEY = 'ВСТАВЬТЕ_СЮДА_ВАШ_MASTER_KEY'; // Починається на $2...
         // ==================================
 
         let tasks = [];
         const loadingStatus = document.getElementById('loadingStatus');
+
+        // Функція для форматування тексту (жирний, курсив, списки тощо)
+        function formatText(command) {
+            document.execCommand(command, false, null);
+            document.getElementById('taskInput').focus();
+        }
 
         async function loadTasksFromCloud() {
             try {
@@ -348,8 +401,9 @@
                 const li = document.createElement('li');
                 li.className = 'task-item';
                 
+                // Тепер ми вставляємо HTML-код тексту, щоб зберегти форматування
                 li.innerHTML = `
-                    <span>${task.text}</span>
+                    <div class="task-content">${task.text}</div>
                     <div class="task-actions">
                         <button class="action-btn" onclick="moveTask(${task.id}, -1)" title="Підняти">▲</button>
                         <button class="action-btn" onclick="moveTask(${task.id}, 1)" title="Опустити">▼</button>
@@ -371,18 +425,21 @@
 
         function addTask() {
             const input = document.getElementById('taskInput');
-            const text = input.value.trim();
-            if (text === '') return;
+            const htmlContent = input.innerHTML;
+            const plainText = input.innerText.trim();
+            
+            // Якщо текст порожній, нічого не додаємо
+            if (plainText === '') return;
 
             const newTask = {
                 id: Date.now(),
-                text: text,
+                text: htmlContent, // Зберігаємо з усім форматуванням
                 urgent: document.getElementById('urgentToggle').checked,
                 important: document.getElementById('importantToggle').checked
             };
 
             tasks.push(newTask);
-            input.value = '';
+            input.innerHTML = ''; // Очищаємо редактор
             document.getElementById('urgentToggle').checked = false;
             document.getElementById('importantToggle').checked = false;
 
@@ -424,8 +481,17 @@
         }
 
         function handleKeyPress(event) {
-            if (event.key === 'Enter') addTask();
+    if (event.key === 'Enter') {
+        // Если зажат Ctrl или Shift — позволяем браузеру сделать перенос строки
+        if (event.ctrlKey || event.shiftKey) {
+            return; // Ничего не блокируем, строка переносится
+        } else {
+            // Если нажат ТОЛЬКО Enter — отменяем стандартный перенос и отправляем задачу
+            event.preventDefault(); 
+            addTask();
         }
+    }
+}
 
         loadTasksFromCloud();
     </script>
