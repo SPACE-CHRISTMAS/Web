@@ -401,12 +401,13 @@
                 const li = document.createElement('li');
                 li.className = 'task-item';
                 
-                // Тепер ми вставляємо HTML-код тексту, щоб зберегти форматування
+                // ТУТ МИ ДОДАЛИ КНОПКУ РЕДАГУВАННЯ (edit-btn)
                 li.innerHTML = `
                     <div class="task-content">${task.text}</div>
                     <div class="task-actions">
                         <button class="action-btn" onclick="moveTask(${task.id}, -1)" title="Підняти">▲</button>
                         <button class="action-btn" onclick="moveTask(${task.id}, 1)" title="Опустити">▼</button>
+                        <button class="action-btn edit-btn" onclick="editTask(${task.id})" title="Редагувати">✎</button>
                         <button class="delete-btn" onclick="deleteTask(${task.id})" title="Видалити">&times;</button>
                     </div>
                 `;
@@ -480,10 +481,46 @@
             }
         }
 
+        function editTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            // Знаходимо саме цей елемент у списку
+            const li = event.target.closest('li');
+            const contentDiv = li.querySelector('.task-content');
+            
+            // Вмикаємо можливість редагування
+            contentDiv.contentEditable = true;
+            contentDiv.style.border = "1px solid #555";
+            contentDiv.style.padding = "5px";
+            contentDiv.focus();
+
+            // Міняємо олівець на галочку збереження
+            const actionBtn = li.querySelector('.edit-btn');
+            actionBtn.innerHTML = '✔';
+            actionBtn.title = "Зберегти";
+            actionBtn.onclick = () => saveEditedTask(taskId, contentDiv);
+        }
+
+        function saveEditedTask(taskId, contentDiv) {
+            const task = tasks.find(t => t.id === taskId);
+            // Зберігаємо HTML-контент (з форматуванням)
+            task.text = contentDiv.innerHTML;
+            
+            // Вимикаємо редагування
+            contentDiv.contentEditable = false;
+            contentDiv.style.border = "none";
+            contentDiv.style.padding = "0";
+            
+            saveAndRender(); // Оновлюємо в хмарі
+        }
+
+
         function handleKeyPress(event) {
     // Нічого не блокуємо, дозволяємо стандартну поведінку браузера (Enter = перенос рядка)
     // Відправка тепер працюватиме тільки через клік по кнопці "Додати завдання"
-}
+    }
+
 
         loadTasksFromCloud();
     </script>
