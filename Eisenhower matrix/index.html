@@ -485,21 +485,20 @@
             const task = tasks.find(t => t.id === taskId);
             if (!task) return;
 
-            // Знаходимо саме цей елемент у списку
-            const li = event.target.closest('li');
-            const contentDiv = li.querySelector('.task-content');
+            // 1. Копіюємо текст завдання в головний редактор знизу
+            const editor = document.getElementById('taskInput');
+            editor.innerHTML = task.text;
             
-            // Вмикаємо можливість редагування
-            contentDiv.contentEditable = true;
-            contentDiv.style.border = "1px solid #555";
-            contentDiv.style.padding = "5px";
-            contentDiv.focus();
+            // 2. Встановлюємо перемикачі (Срочно/Важливо)
+            document.getElementById('urgentToggle').checked = task.urgent;
+            document.getElementById('importantToggle').checked = task.important;
 
-            // Міняємо олівець на галочку збереження
-            const actionBtn = li.querySelector('.edit-btn');
-            actionBtn.innerHTML = '✔';
-            actionBtn.title = "Зберегти";
-            actionBtn.onclick = () => saveEditedTask(taskId, contentDiv);
+            // 3. Видаляємо старе завдання, щоб після "Додати" воно просто оновилось
+            deleteTask(taskId);
+            
+            // 4. Авто-скрол до редактора, щоб користувач не мотав вгору-вниз
+            editor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            editor.focus();
         }
 
         function saveEditedTask(taskId, contentDiv) {
