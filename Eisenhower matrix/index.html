@@ -267,21 +267,25 @@
             }
             .editor-container { margin-top: 5px; }
         }
-        /* Додаткові налаштування для кнопок на телефонах */
-        @media (max-width: 650px) {
-            .task-actions {
-                gap: 15px; /* Збільшуємо відстань між усіма кнопками */
-            }
-            
-            .edit-btn {
-                margin-right: 10px; /* Додатковий відступ для олівця */
-                padding: 5px;       /* Збільшуємо зону натискання */
-            }
-            
-            .delete-btn {
-                padding: 5px;       /* Збільшуємо зону натискання для крестика */
-                font-size: 24px;    /* Робимо крестик трохи більшим, щоб легше було попасти */
-            }
+                /* Робимо вертикальний ряд для кнопок */
+        .task-actions {
+            display: flex;
+            flex-direction: column; /* Кнопки стають у стовпчик */
+            gap: 12px;              /* Відстань між кнопками */
+            align-items: center;    /* Центруємо кнопки по горизонталі */
+            padding-left: 10px;     /* Відступ від тексту завдання */
+        }
+
+        /* Збільшуємо розмір кнопок для зручного натискання пальцем */
+        .action-btn, .edit-btn, .delete-btn {
+            padding: 8px !important; 
+            font-size: 20px !important;
+            line-height: 1 !important;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
