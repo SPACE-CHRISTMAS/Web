@@ -132,8 +132,8 @@
         /* --- СТИЛІ ДЛЯ ТЕЛЕФОНУ (Кнопки завжди видимі, вертикально) --- */
         @media (max-width: 650px) {
             .task-actions {
-                display: flex;
-                flex-direction: column; /* Вертикально */
+                display: flex !important;
+                flex-direction: row !important; /* Горизонтально для ПК */
                 gap: 12px;
                 margin-top: 10px;
                 margin-left: 0;
