@@ -97,20 +97,22 @@
         .task-content ul, .task-content ol { margin: 4px 0 4px 20px; padding: 0; }
         .task-content div { margin: 0; }
 
-        /* Блок із кнопками дій */
-        .task-actions {
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-            margin-top: 8px;    /* Відстань від тексту вниз */
-            margin-left: -5px;  /* Трохи лівіше відносно краю тексту */
-            opacity: 0;         /* Приховуємо кнопки за замовчуванням */
-            transition: opacity 0.2s ease;
+        /* ЛОГІКА КНОПОК */
+        .task-actions { 
+            display: flex; 
+            gap: 8px; 
+            margin-top: 15px; 
         }
-
-        /* Показуємо кнопки при наведенні на все завдання */
-        .task-item:hover .task-actions {
-            opacity: 1;
+        
+        /* ПК: горизонтально */
+        @media (min-width: 651px) {
+            .task-actions { flex-direction: row; opacity: 0; }
+            .task-item:hover .task-actions { opacity: 1; }
+        }
+        
+        /* Телефон: вертикально */
+        @media (max-width: 650px) {
+            .task-actions { flex-direction: column; opacity: 1; align-items: flex-start; }
         }
 
         /* --- СТИЛІ ДЛЯ ПК (Кнопки при наведенні, горизонтально) --- */
