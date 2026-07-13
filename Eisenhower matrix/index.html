@@ -30,14 +30,15 @@
         /* Сітка Матриці */
         .matrix-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            /* Для ПК — 4 стовпчики в один рядок */
+            grid-template-columns: 1fr 1fr 1fr 1fr; 
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px; /* Збільшили ширину для зручності на ПК */
             height: 500px;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 30px;
+            gap: 10px; /* Додамо трохи простору між квадратами */
         }
 
         .quadrant {
