@@ -100,10 +100,17 @@
         /* Блок із кнопками дій */
         .task-actions {
             display: flex;
+            flex-direction: row;
             gap: 8px;
-            opacity: 1; 
-            margin-left: 10px;
-            flex-shrink: 0;
+            margin-top: 8px;    /* Відстань від тексту вниз */
+            margin-left: -5px;  /* Трохи лівіше відносно краю тексту */
+            opacity: 0;         /* Приховуємо кнопки за замовчуванням */
+            transition: opacity 0.2s ease;
+        }
+
+        /* Показуємо кнопки при наведенні на все завдання */
+        .task-item:hover .task-actions {
+            opacity: 1;
         }
 
                 /* Для ПК: кнопки в ряд знизу */
