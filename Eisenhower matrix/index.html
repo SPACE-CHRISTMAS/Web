@@ -109,23 +109,22 @@
                 /* Для ПК: кнопки в ряд знизу */
         @media (min-width: 651px) {
             .task-actions {
-                flex-direction: row; /* Рядок замість стовпчика */
-                justify-content: flex-start; /* Притиснути до лівого краю */
-                margin-top: 10px; /* Відступ від тексту зверху */
-                margin-left: 0;
-                opacity: 0.5; /* Трохи прозорі, коли не наводимо мишкою */
-                transition: opacity 0.2s;
-            }
-            .task-item:hover .task-actions {
-                opacity: 1; /* З'являються при наведенні */
+                display: flex !important;
+                flex-direction: row !important; /* Горизонтально */
+                justify-content: flex-start;
+                gap: 8px; /* Відстань між кнопками */
+                margin-top: 5px;
             }
         }
 
-        /* Для телефонів: залишаємо як було (стовпчиком) */
+        /* Для телефонів: кнопки в ряд (якщо ви хочете) або стовпчиком */
         @media (max-width: 650px) {
             .task-actions {
-                flex-direction: column;
-                gap: 12px;
+                display: flex !important;
+                flex-direction: row !important; /* Теж горизонтально */
+                justify-content: center;
+                gap: 10px;
+                margin-top: 5px;
             }
         }
 
